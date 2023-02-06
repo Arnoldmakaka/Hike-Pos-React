@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Routes, Route } from "react-router-dom";
 
-function App() {
+//---pages
+//landing page
+import LandingPage from './pages/landingPage/LandingPage';
+
+//layouts
+import AuthLayout from './pages/layouts/AuthLayout';
+import MainLayout from './pages/layouts/MainLayout';
+
+//authentication
+import Login from './pages/authentication/Login';
+
+//mainapp
+import Dashboard from './pages/dashboard/Dashboard';
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Routes>
+      <Route path="/" element={<LandingPage/>} />
+
+      <Route element={<AuthLayout/>}>
+        <Route path="/login" element={<Login/>} />
+      </Route>
+
+      <Route element={<MainLayout/>}>
+        <Route path="/dashboard" element={<Dashboard/>} />
+      </Route>
+    
+    </Routes>
+  )
 }
 
-export default App;
+export default App
